@@ -6,12 +6,15 @@
         <title>Redirección</title>
         <script>
             window.onload = function() {
-                // Obtener la sección desde la URL de la carpeta
-                const section = window.location.pathname.split('/').filter(Boolean).pop();
+                // Obtener la parte relevante de la URL
+                const path = window.location.pathname;
+                
+                // Extraer la sección del path
+                const section = path.split('/').filter(part => part && part !== 'index.html').pop();
                 
                 // Redirigir a la página principal con el hash correspondiente
                 if (section) {
-                    window.location.href = `https://andresmourullo.github.io/el-portfolio-de-andres/#${section}`;
+                    window.location.href = `https://andresmourullo.github.io/el-portfolio-de-andres/#${section}-section`;
                 } else {
                     window.location.href = 'https://andresmourullo.github.io/el-portfolio-de-andres/';
                 }
