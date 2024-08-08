@@ -33,13 +33,13 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="nav">
-					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Inicio</span></a></li>
-					<li class="nav-item"><a href="#about-section" class="nav-link"><span>Sobre mí</span></a></li>
-					<li class="nav-item"><a href="#resume-section" class="nav-link"><span>Experiencia laboral</span></a></li>
-					<li class="nav-item"><a href="#services-section" class="nav-link"><span>Estudios</span></a></li>
-					<li class="nav-item"><a href="#skills-section" class="nav-link"><span>Lenguajes</span></a></li>
-					<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Proyectos</span></a></li>
-					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contacto</span></a></li>
+					<li class="nav-item"><a href="#home-section" class="nav-link" data-section="home">Inicio</a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link" data-section="about">Sobre mí</a></li>
+					<li class="nav-item"><a href="#resume-section" class="nav-link" data-section="resume">Experiencia laboral</a></li>
+					<li class="nav-item"><a href="#services-section" class="nav-link" data-section="services">Estudios</a></li>
+					<li class="nav-item"><a href="#skills-section" class="nav-link" data-section="skills">Lenguajes</a></li>
+					<li class="nav-item"><a href="#projects-section" class="nav-link" data-section="projects">Proyectos</a></li>
+					<li class="nav-item"><a href="#contact-section" class="nav-link" data-section="contact">Contacto</a></li>
 				</ul>
 			</div>
 			</div>
@@ -608,41 +608,31 @@
 
 
 		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				// Mapea las rutas a sus correspondientes IDs de sección
-				const sectionIdMap = {
-					'/': 'home-section',  // La raíz o la página principal
-					'/about': 'about-section',
-					'/resume': 'resume-section',
-					'/services': 'services-section',
-					'/skills': 'skills-section',
-					'/projects': 'projects-section',
-					'/contact': 'contact-section'
-				};
-		
-				// Función para desplazar suavemente a la sección especificada
-				function scrollToSection(sectionId) {
-					const section = document.getElementById(sectionId);
-					if (section) {
-						section.scrollIntoView({ behavior: 'smooth' });
+			function scrollToHash() {
+				const hash = window.location.hash;
+				if (hash) {
+					const element = document.querySelector(hash);
+					if (element) {
+						element.scrollIntoView({ behavior: 'smooth' });
 					}
 				}
-		
-				// Obtener la ruta de la URL actual
-				const path = window.location.pathname;
-		
-				// Desplazar a la sección correspondiente si está en el mapa
-				if (sectionIdMap[path]) {
-					scrollToSection(sectionIdMap[path]);
-				}
-		
-				// Manejar el desplazamiento cuando se hace clic en los enlaces del menú
-				document.querySelectorAll('.nav-link').forEach(link => {
-					link.addEventListener('click', (event) => {
-						event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
-						const targetId = link.getAttribute('href').substring(1); // Obtener el ID de destino
-						scrollToSection(targetId);
-					});
+			}
+	
+			// Scroll to the section if a hash is present on page load
+			window.addEventListener('load', scrollToHash);
+	
+			// Optionally, handle hash change while user navigates
+			window.addEventListener('hashchange', scrollToHash);
+	
+			document.querySelectorAll('.nav-link').forEach(link => {
+				link.addEventListener('click', function(event) {
+					event.preventDefault();
+					const sectionId = this.getAttribute('href');
+					window.location.hash = sectionId;
+					const element = document.querySelector(sectionId);
+					if (element) {
+						element.scrollIntoView({ behavior: 'smooth' });
+					}
 				});
 			});
 		</script>
