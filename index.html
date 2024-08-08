@@ -32,14 +32,14 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav nav ml-auto">
-				<li class="nav-item"><a href="#home-section" class="nav-link"><span>Inicio</span></a></li>
-				<li class="nav-item"><a href="#about-section" class="nav-link"><span>Sobre mí</span></a></li>
-				<li class="nav-item"><a href="#resume-section" class="nav-link"><span>Experiencia laboral</span></a></li>
-				<li class="nav-item"><a href="#services-section" class="nav-link"><span>Estudios</span></a></li>
-				<li class="nav-item"><a href="#skills-section" class="nav-link"><span>Lenguajes</span></a></li>
-				<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Proyectos</span></a></li>
-				<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contacto</span></a></li>
+				<ul class="nav">
+					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Inicio</span></a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link"><span>Sobre mí</span></a></li>
+					<li class="nav-item"><a href="#resume-section" class="nav-link"><span>Experiencia laboral</span></a></li>
+					<li class="nav-item"><a href="#services-section" class="nav-link"><span>Estudios</span></a></li>
+					<li class="nav-item"><a href="#skills-section" class="nav-link"><span>Lenguajes</span></a></li>
+					<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Proyectos</span></a></li>
+					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contacto</span></a></li>
 				</ul>
 			</div>
 			</div>
@@ -607,6 +607,45 @@
 		<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				// Mapea las rutas a sus correspondientes IDs de sección
+				const sectionIdMap = {
+					'/': 'home-section',  // La raíz o la página principal
+					'/about': 'about-section',
+					'/resume': 'resume-section',
+					'/services': 'services-section',
+					'/skills': 'skills-section',
+					'/projects': 'projects-section',
+					'/contact': 'contact-section'
+				};
+		
+				// Función para desplazar suavemente a la sección especificada
+				function scrollToSection(sectionId) {
+					const section = document.getElementById(sectionId);
+					if (section) {
+						section.scrollIntoView({ behavior: 'smooth' });
+					}
+				}
+		
+				// Obtener la ruta de la URL actual
+				const path = window.location.pathname;
+		
+				// Desplazar a la sección correspondiente si está en el mapa
+				if (sectionIdMap[path]) {
+					scrollToSection(sectionIdMap[path]);
+				}
+		
+				// Manejar el desplazamiento cuando se hace clic en los enlaces del menú
+				document.querySelectorAll('.nav-link').forEach(link => {
+					link.addEventListener('click', (event) => {
+						event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+						const targetId = link.getAttribute('href').substring(1); // Obtener el ID de destino
+						scrollToSection(targetId);
+					});
+				});
+			});
+		</script>
 		<script>
 			if ('scrollRestoration' in history) {
 				history.scrollRestoration = 'manual';
