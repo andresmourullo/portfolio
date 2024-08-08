@@ -7,7 +7,7 @@
         <script>
             window.onload = function() {
                 // Obtener la sección desde la URL de la carpeta
-                const section = window.location.pathname.split('/').pop();
+                const section = window.location.pathname.split('/').filter(Boolean).pop();
                 
                 // Redirigir a la página principal con el hash correspondiente
                 if (section) {
