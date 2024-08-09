@@ -615,11 +615,15 @@
 				const urlParams = new URLSearchParams(window.location.search);
 				const sectionId = urlParams.get('section');
 				
+				// Verificar que el parámetro section sea correcto
 				if (sectionId) {
-				const section = document.querySelector(`#${sectionId}`);
-				if (section) {
-					section.scrollIntoView({ behavior: 'smooth' });
-				}
+					const section = document.querySelector(`#${sectionId}`);
+					if (section) {
+						console.log(sectionId);
+						section.scrollIntoView({ behavior: 'smooth' });
+					} else {
+						console.error('No se encontró la sección con el id:', sectionId);
+					}
 				}
 			});
 		</script>
