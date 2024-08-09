@@ -46,46 +46,6 @@
 		</nav>
 
 		<section id="home-section" class="hero">
-			<!-- <div class="home-slider  owl-carousel">
-				<div class="slider-item ">
-					<div class="overlay"></div>
-					<div class="container">
-					<div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-						<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/bg_1.png);">
-							<div class="overlay"></div>
-						</div>
-						<div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-							<div class="text">
-								<span class="subheading">Hello!</span>
-								<h1 class="mb-4 mt-3">I'm <span>Clark Thompson</span></h1>
-								<h2 class="mb-4">A Freelance Web Designer</h2>
-								<p><a href="#" class="btn btn-primary py-3 px-4">Hire me</a> <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-							</div>
-						</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="slider-item">
-					<div class="overlay"></div>
-					<div class="container">
-					<div class="row d-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-						<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/bg_2.png);">
-							<div class="overlay"></div>
-						</div>
-						<div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-							<div class="text">
-								<span class="subheading">Hello!</span>
-								<h1 class="mb-4 mt-3">I'm a <span>web designer</span> based in London</h1>
-								<p><a href="#" class="btn btn-primary py-3 px-4">Hire me</a> <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-							</div>
-						</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
-			<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.5/build/spline-viewer.js"></script>
-			<spline-viewer loading-anim-type="spinner-big-light" url="https://prod.spline.design/YA0tig9U9bGmcsS1/scene.splinecode"></spline-viewer>
 		</section>
 
 		<section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
@@ -611,6 +571,55 @@
 		<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 		<script>
+			function loadContentBasedOnWidth() {
+			const section = document.getElementById('home-section');
+	
+			// Limpia el contenido actual de la sección
+			section.innerHTML = '';
+	
+			const largeScreen = window.matchMedia("(min-width: 900px)");
+
+			if (largeScreen.matches) {
+				// Para pantallas grandes
+				const script = document.createElement('script');
+				script.type = 'module';
+				script.src = 'https://unpkg.com/@splinetool/viewer@1.9.5/build/spline-viewer.js';
+				section.appendChild(script);
+
+				const splineViewer = document.createElement('spline-viewer');
+				splineViewer.url = 'https://prod.spline.design/XFlzGxd3lzkPjIU7/scene.splinecode';
+				section.appendChild(splineViewer);
+
+			} else {
+					// Para pantallas pequeñas
+					const script = document.createElement('script');
+					script.type = 'module';
+					script.src = 'https://unpkg.com/@splinetool/viewer@1.9.5/build/spline-viewer.js';
+					section.appendChild(script);
+		
+					const splineViewer = document.createElement('spline-viewer');
+					splineViewer.loadingAnimType = 'spinner-big-light';
+					splineViewer.url = 'https://prod.spline.design/YA0tig9U9bGmcsS1/scene.splinecode';
+					section.appendChild(splineViewer);
+				}
+			}
+
+			// Ejecutar al cargar la página
+			window.addEventListener('load', loadContentBasedOnWidth);
+
+			// Ejecutar al cambiar el tamaño de la ventana
+			window.addEventListener('resize', loadContentBasedOnWidth);
+		</script>
+		<script>
+			if ('scrollRestoration' in history) {
+				history.scrollRestoration = 'manual';
+			}
+		
+			window.addEventListener('load', function() {
+				window.scrollTo(0, 0);
+			});
+		</script>
+		<script>
 			document.addEventListener('DOMContentLoaded', function() {
 				const urlParams = new URLSearchParams(window.location.search);
 				const sectionId = urlParams.get('section');
@@ -625,15 +634,6 @@
 						console.error('No se encontró la sección con el id:', sectionId);
 					}
 				}
-			});
-		</script>
-		<script>
-			if ('scrollRestoration' in history) {
-				history.scrollRestoration = 'manual';
-			}
-		
-			window.addEventListener('load', function() {
-				window.scrollTo(0, 0);
 			});
 		</script>
 		<script src="js/jquery.min.js"></script>
