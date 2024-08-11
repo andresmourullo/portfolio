@@ -8385,8 +8385,8 @@ h1, h2, h3, h4, h5,
   .ftco-navbar-light.scrolled .navbar-brand {
     color: #fff;
     padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-size: 24px; }
+    padding-bottom: 0;
+    font-size: 20px; }
 
 .navbar-brand {
   font-weight: 900;
@@ -8959,6 +8959,16 @@ h1, h2, h3, h4, h5,
     font-weight: 900; }
     .ftco-hireme h2 span {
       color: #ffbd39; }
+
+
+@media (max-width: 900px) {
+  .inicio {
+    display: none !important;
+  } 
+  .my-image {
+    display: none !important;
+  }
+}
 
 @media (min-width: 992px) {
   .margin-top {
