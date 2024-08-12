@@ -1,82 +1,72 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:700");
+
 .background {
-  background-color: #003040;
+  background-color: #000000;
   position: relative;
   height: 100vh;
-  overflow-Y: hidden;
+  overflow: hidden;
   font-family: 'Montserrat', sans-serif;
 }
 
-.cube {
+.math-symbol {
   position: absolute;
-  top: 80vh;
-  left: 45vw;
-  width: 10px;
-  height: 10px;
-  border: solid 1px #003298;
-  -webkit-transform-origin: top left;
-          transform-origin: top left;
-  -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
-          transform: scale(0) rotate(0deg) translate(-50%, -50%);
-  -webkit-animation: cube 12s ease-in forwards infinite;
-          animation: cube 12s ease-in forwards infinite;
-}
-.cube:nth-child(2n) {
-  border-color: #0051f4;
-}
-.cube:nth-child(2) {
-  -webkit-animation-delay: 2s;
-          animation-delay: 2s;
-  left: 25vw;
-  top: 40vh;
-}
-.cube:nth-child(3) {
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
-  left: 75vw;
-  top: 50vh;
-}
-.cube:nth-child(4) {
-  -webkit-animation-delay: 6s;
-          animation-delay: 6s;
-  left: 90vw;
-  top: 10vh;
-}
-.cube:nth-child(5) {
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
-  left: 10vw;
-  top: 85vh;
-}
-.cube:nth-child(6) {
-  -webkit-animation-delay: 10s;
-          animation-delay: 10s;
-  left: 50vw;
-  top: 10vh;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  transform-origin: center center;
+  opacity: 0;
+  animation: math-symbol 15s linear infinite;
 }
 
-@-webkit-keyframes cube {
-  from {
-    -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
-            transform: scale(0) rotate(0deg) translate(-50%, -50%);
-    opacity: 1;
-  }
-  to {
-    -webkit-transform: scale(20) rotate(960deg) translate(-50%, -50%);
-            transform: scale(20) rotate(960deg) translate(-50%, -50%);
-    opacity: 0;
-  }
+.math-symbol:nth-child(1) {
+  left: 10%;
+  top: 10%;
+  animation-delay: 0s;
 }
 
-@keyframes cube {
-  from {
-    -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
-            transform: scale(0) rotate(0deg) translate(-50%, -50%);
+.math-symbol:nth-child(2) {
+  left: 40%;
+  top: 20%;
+  animation-delay: 3s;
+}
+
+.math-symbol:nth-child(3) {
+  left: 70%;
+  top: 10%;
+  animation-delay: 6s;
+}
+
+.math-symbol:nth-child(4) {
+  left: 30%;
+  top: 50%;
+  animation-delay: 9s;
+}
+
+.math-symbol:nth-child(5) {
+  left: 60%;
+  top: 70%;
+  animation-delay: 12s;
+}
+
+@keyframes math-symbol {
+  0% {
+    transform: scale(1) rotate(0deg);
     opacity: 1;
   }
-  to {
-    -webkit-transform: scale(20) rotate(960deg) translate(-50%, -50%);
-            transform: scale(20) rotate(960deg) translate(-50%, -50%);
-    opacity: 0;
+  25% {
+    transform: scale(1.5) rotate(45deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(2) rotate(90deg);
+    opacity: 0.6;
+  }
+  75% {
+    transform: scale(1.5) rotate(135deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(180deg);
+    opacity: 1;
   }
 }
